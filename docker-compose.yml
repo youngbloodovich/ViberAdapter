@@ -4,6 +4,9 @@ services:
     build: 
       context: ./ViberAdapter/ViberAdapter/
       dockerfile: Dockerfile
+    expose:
+      - "80"
+    restart: always
     networks:
       - chat-bots
 networks:
