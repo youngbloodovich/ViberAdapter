@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  viberAdapter:
+    build: 
+      context: ./ViberAdapter/ViberAdapter/
+      dockerfile: Dockerfile
+    networks:
+      - chat-bots
+networks:
+  chat-bots:
+    name: chat-bots
+    external: true
+    
