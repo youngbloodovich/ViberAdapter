@@ -49,7 +49,7 @@ namespace ViberAdapter.Controllers
                 case Models.Enums.EventType.ClientStatus:
                     break;
                 default:
-                    _logger.LogError($"Undefined event: { contract.Event } !");
+                    _logger.LogWarning($"Undefined event: { contract.Event } !");
                     break;
             }
 

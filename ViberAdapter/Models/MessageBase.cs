@@ -21,7 +21,7 @@ namespace ViberAdapter.Models
         /// Unique Viber user id.
         /// </summary>
         [JsonProperty("receiver")]
-        public string Receiver { get; set; }
+        public string? Receiver { get; set; }
 
         /// <summary>
         /// Message type.
@@ -33,13 +33,13 @@ namespace ViberAdapter.Models
         /// Sender of the message.
         /// </summary>
         [JsonProperty("sender")]
-        public UserBase Sender { get; set; }
+        public UserBase? Sender { get; set; }
 
         /// <summary>
         /// Allow the account to track messages and user’s replies. Sent tracking_data value will be passed back with user’s reply.
         /// </summary>
         [JsonProperty("tracking_data")]
-        public string TrackingData { get; set; }
+        public string? TrackingData { get; set; }
 
         /// <summary>
         /// Minimal API version required by clients for this message (default 1).
