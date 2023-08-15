@@ -28,7 +28,7 @@ namespace ViberAdapter.Controllers
             }
         }
 
-        [HttpGet("remove")]
+        [HttpGet("delete")]
         public async Task<IActionResult> RemoveWebhook()
         {
             var result = await _webhookService.Delete();

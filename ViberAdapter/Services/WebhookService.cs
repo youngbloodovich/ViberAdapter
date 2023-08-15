@@ -36,7 +36,7 @@ namespace ViberAdapter.Services
             }
             catch (ViberRequestApiException e)
             {
-                _logger.LogError(e, "Webhook creation error");
+                _logger.LogError(e, $"Webhook creation error. Code: {e.Code}, request: {e.Request}, response: {e.Response}");
                 return false;
             }
             catch (Exception e)
@@ -45,7 +45,6 @@ namespace ViberAdapter.Services
                 return false;
             }
 
-            _logger.LogInformation($"Webhook was created");
             return true;
         }
 
@@ -53,20 +52,11 @@ namespace ViberAdapter.Services
         {
             try
             {
-                await _viberClient.SetWebhookAsync(_callbackEndpoint, new EventType[]
-                {
-                    EventType.Delivered,
-                    EventType.Seen,
-                    EventType.Failed,
-                    EventType.Subscribed,
-                    EventType.Unsubscribed,
-                    EventType.ConversationStarted,
-                    EventType.Message
-                });
+                await _viberClient.SetWebhookAsync(string.Empty);
             }
             catch (ViberRequestApiException e)
             {
-                _logger.LogError(e, "Webhook deletion error");
+                _logger.LogError(e, $"Webhook deletion error. Code: {e.Code}, request: {e.Request}, response: {e.Response}");
                 return false;
             }
             catch (Exception e)
@@ -75,7 +65,6 @@ namespace ViberAdapter.Services
                 return false;
             }
 
-            _logger.LogInformation($"Webhook was deleted");
             return true;
         }
     }
