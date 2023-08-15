@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  viberadapter:
+    container_name: viberadapter
+    build: 
+      context: .
+      dockerfile: ./ViberAdapter/Dockerfile
+    expose:
+      - "80"
+    restart: always
+    networks:
+      - chat-bots
+networks:
+  chat-bots:
+    name: chat-bots
+    external: true

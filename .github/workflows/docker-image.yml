@@ -1,0 +1,20 @@
+name: deploy to raspberry
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: raspberry-docker
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: STOP PREVIOUS DEPLOYMENT
+      run: docker compose rm -fs
+    - name: BUILD NEW IMAGE
+      run: docker compose build
+    - name: RUN NEW IMAGE
+      run: docker compose up -d
