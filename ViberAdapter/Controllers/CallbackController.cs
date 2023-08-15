@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using ViberAdapter.Models;
 
 namespace ViberAdapter.Controllers
@@ -17,7 +18,7 @@ namespace ViberAdapter.Controllers
         [HttpPost]
         public IActionResult Callback([FromBody] CallbackData contract)
         {
-            _logger.LogInformation($"Callback received! Contract: {contract}");
+            _logger.LogInformation($"Callback received! Contract: {JsonConvert.SerializeObject(contract)}");
 
             return Ok();
         }

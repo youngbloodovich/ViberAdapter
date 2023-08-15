@@ -13,7 +13,7 @@ builder.Services.AddHttpClient();
 builder.Services.AddTransient<IViberClient, ViberClient>();
 builder.Services.AddTransient<IWebhookService, WebhookService>();
 
-builder.Services.AddControllers().AddNewtonsoftJson();
+builder.Services.AddControllers();
 builder.Services.AddLogging();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
