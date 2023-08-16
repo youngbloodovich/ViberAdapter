@@ -22,9 +22,12 @@ namespace ViberAdapter.Controllers
         }
 
         [HttpPost]
-        public IActionResult Callback(CallbackData? contract)
+        public async Task<IActionResult> CallbackAsync(CallbackData? contract)
         {
-            _logger.LogInformation($"Callback received! \n Contract: {JsonConvert.SerializeObject(contract)}");
+            if (contract == null)
+            {
+                return BadRequest();
+            }
 
             switch (contract.Event)
             {
@@ -41,6 +44,11 @@ namespace ViberAdapter.Controllers
                 case Models.Enums.EventType.ConversationStarted:
                     break;
                 case Models.Enums.EventType.Message:
+                    await _viberClent.SendTextMessageAsync(new TextMessage()
+                    {
+                        Receiver = contract.Sender.Id,
+                        Text = ((TextMessage)contract.Message).Text,
+                    });
                     break;
                 case Models.Enums.EventType.Webhook:
                     break;

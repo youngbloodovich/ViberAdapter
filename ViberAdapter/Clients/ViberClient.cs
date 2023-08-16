@@ -164,9 +164,7 @@ namespace ViberAdapter.Clients
         private async Task<T> RequestApiAsync<T>(string method, object data = null)
             where T : ApiResponseBase, new()
         {
-            var requestJson = data == null
-                ? "{}"
-                : JsonConvert.SerializeObject(data, _jsonSettings);
+            var requestJson = data == null ? "{}" : JsonConvert.SerializeObject(data, _jsonSettings);
             var response = await _httpClient.PostAsync(method, new StringContent(requestJson));
             var responseJson = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<T>(responseJson);
