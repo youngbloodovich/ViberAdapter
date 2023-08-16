@@ -1,8 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using System.Net.WebSockets;
-using System.Text;
-using System.Text.Json;
 using ViberAdapter.Clients;
 using ViberAdapter.Models;
 
@@ -38,16 +34,31 @@ namespace ViberAdapter.Controllers
                 case Models.Enums.EventType.Failed:
                     break;
                 case Models.Enums.EventType.Subscribed:
+                    await _viberClent.SendTextMessageAsync(new TextMessage()
+                    {
+                        Receiver = contract.User.Id,
+                        Text = "Subscribed",
+                    });
                     break;
                 case Models.Enums.EventType.Unsubscribed:
+                    await _viberClent.SendTextMessageAsync(new TextMessage()
+                    {
+                        Receiver = contract.User.Id,
+                        Text = "Unsubscribed",
+                    });
                     break;
                 case Models.Enums.EventType.ConversationStarted:
+                    await _viberClent.SendTextMessageAsync(new TextMessage()
+                    {
+                        Receiver = contract.User.Id,
+                        Text = "ConversationStarted",
+                    });
                     break;
                 case Models.Enums.EventType.Message:
                     await _viberClent.SendTextMessageAsync(new TextMessage()
                     {
                         Receiver = contract.Sender.Id,
-                        Text = ((TextMessage)contract.Message).Text,
+                        Text = "Message",
                     });
                     break;
                 case Models.Enums.EventType.Webhook:
