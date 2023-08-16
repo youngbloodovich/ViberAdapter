@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Diagnostics.CodeAnalysis;
 using ViberAdapter.Models.Enums;
 
 namespace ViberAdapter.Models

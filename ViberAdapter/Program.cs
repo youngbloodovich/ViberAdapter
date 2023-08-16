@@ -12,7 +12,9 @@ builder.Services.AddTransient<IViberClient, ViberClient>();
 builder.Services.AddTransient<IWebhookService, WebhookService>();
 
 builder.Services.AddHttpClient();
-builder.Services.AddControllers().AddNewtonsoftJson();
+builder.Services
+    .AddControllers(options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true)
+    .AddNewtonsoftJson();
 builder.Services.AddLogging();
 builder.Services.AddHttpLogging(options =>
 {
