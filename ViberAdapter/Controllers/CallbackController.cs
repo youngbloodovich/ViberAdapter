@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ViberAdapter.Clients;
 using ViberAdapter.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ViberAdapter.Controllers
 {
@@ -41,17 +42,25 @@ namespace ViberAdapter.Controllers
                     });
                     break;
                 case Models.Enums.EventType.Unsubscribed:
-                    await _viberClent.SendTextMessageAsync(new TextMessage()
-                    {
-                        Receiver = contract.User.Id,
-                        Text = "Unsubscribed",
-                    });
                     break;
                 case Models.Enums.EventType.ConversationStarted:
-                    await _viberClent.SendTextMessageAsync(new TextMessage()
+                    var keyboard = new Keyboard()
                     {
-                        Receiver = contract.User.Id,
-                        Text = "ConversationStarted",
+                        Buttons = new[] {
+                            new KeyboardButton()
+                            {
+                                ActionType = Models.Enums.KeyboardActionType.Reply,
+                                ActionBody = "reply to me",
+                                Text = "Key text",
+                                TextSize = Models.Enums.TextSize.Regular
+                            }
+                        }
+                    };
+                    await _viberClent.SendKeyboardMessageAsync(new KeyboardMessage
+                    {
+                        Keyboard = keyboard,
+                        Text = "Hello world",
+                        Receiver = contract.User.Id
                     });
                     break;
                 case Models.Enums.EventType.Message:
