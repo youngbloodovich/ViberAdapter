@@ -31,19 +31,19 @@ namespace ViberAdapter.Models
         /// Unique Viber user id.
         /// </summary>
         [JsonProperty("user_id")]
-        public string? UserId { get; set; }
+        public string UserId { get; set; }
 
         /// <summary>
         /// Viber user.
         /// </summary>
         [JsonProperty("user")]
-        public User? User { get; set; }
+        public User User { get; set; }
 
         /// <summary>
         /// Indicated whether a user is already subscribed.
         /// </summary>
         [JsonProperty("subscribed")]
-        public bool? Subscribed { get; set; }
+        public bool Subscribed { get; set; }
 
         /// <summary>
         /// Any additional parameters added to the deep link used to access the conversation passed as a string.
@@ -52,25 +52,25 @@ namespace ViberAdapter.Models
         /// See deep link section for additional information: https://developers.viber.com/docs/tools/deep-links.
         /// </remarks>
         [JsonProperty("context")]
-        public string? Context { get; set; }
+        public string Context { get; set; }
 
         /// <summary>
         /// A string describing the failure.
         /// </summary>
         [JsonProperty("desc")]
-        public string? Description { get; set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// Viber user.
         /// </summary>
         [JsonProperty("sender")]
-        public User? Sender { get; set; }
+        public User Sender { get; set; }
 
         /// <summary>
         /// Message object.
         /// </summary>
         [JsonIgnore]
-        public MessageBase? Message { get; set; }
+        public MessageBase Message { get; set; }
 
         /// <summary>
         /// Message object.

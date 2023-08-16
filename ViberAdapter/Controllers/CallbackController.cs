@@ -24,7 +24,7 @@ namespace ViberAdapter.Controllers
         [HttpPost]
         public IActionResult Callback(CallbackData? contract)
         {
-            _logger.LogInformation($"Callback received! Contract: {JsonConvert.SerializeObject(contract)}");
+            _logger.LogInformation($"Callback received! \n Contract: {JsonConvert.SerializeObject(contract)}");
 
             switch (contract.Event)
             {
